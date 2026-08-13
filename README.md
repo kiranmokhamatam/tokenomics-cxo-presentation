@@ -11,9 +11,27 @@ All data is an **illustrative simulation — not Prudential production data**.
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173
+npm run dev        # http://localhost:5173/prudential/
 npm run build      # production build in dist/
 ```
+
+## Deploy
+
+The site is served under the `/prudential/` base path (see `base` in `vite.config.ts`),
+with a redirect from `/`. Staging + deploy:
+
+```bash
+npm run build
+rm -rf deploy && mkdir -p deploy/prudential && cp -r dist/* deploy/prudential/
+printf '/ /prudential/ 302\n' > deploy/_redirects
+
+npx wrangler pages deploy ./deploy --project-name tokenomics-cxo --branch main   # → resources.ai.tilicho.in
+npx wrangler deploy                                                              # → workers.dev mirror
+```
+
+- Production: https://resources.ai.tilicho.in/prudential/ (Cloudflare Pages project `tokenomics-cxo`,
+  custom domain via GoDaddy CNAME `resources.ai` → `tokenomics-cxo.pages.dev`)
+- Mirror: https://tokenomics-cxo-presentation.kiran-41d.workers.dev/prudential/
 
 Primary target: 1440×900 desktop. Presentation Mode targets 1920×1080 (16:9).
 

@@ -15,7 +15,7 @@ function Header({ onPresent }: { onPresent: () => void }) {
       <div className="max-w-[1180px] mx-auto px-8 lg:px-12 h-[54px] flex items-center justify-between">
         <a href="#top" className="flex items-center gap-3.5">
           <img
-            src="/prudential-logo.webp"
+            src={`${import.meta.env.BASE_URL}prudential-logo.webp`}
             alt="Prudential"
             className="h-[22px] w-auto mix-blend-multiply"
           />
@@ -90,7 +90,11 @@ export default function App() {
       <footer className="bg-ink text-white">
         <div className="max-w-[1180px] mx-auto px-8 lg:px-12 py-10 flex items-center justify-between flex-wrap gap-6">
           <div className="flex items-center gap-4">
-            <img src="/tilicho-logo.webp" alt="Tilicho Labs" className="h-9 w-auto" />
+            <img
+              src={`${import.meta.env.BASE_URL}tilicho-logo.webp`}
+              alt="Tilicho Labs"
+              className="h-9 w-auto"
+            />
             <div>
               <p className="text-[12px] font-medium tracking-wide">Done by Tilicho Labs</p>
               <a

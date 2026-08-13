@@ -61,7 +61,7 @@ export default function Hero({ onExplore, onPresent }: { onExplore: () => void; 
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <img
-          src="/prudential-logo.webp"
+          src={`${import.meta.env.BASE_URL}prudential-logo.webp`}
           alt="Prudential"
           className="h-[30px] w-auto mix-blend-multiply mb-7"
         />

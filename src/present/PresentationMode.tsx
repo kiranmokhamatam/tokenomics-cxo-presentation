@@ -42,7 +42,7 @@ function Slide01() {
     <Slide center>
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }}>
         <img
-          src="/prudential-logo.webp"
+          src={`${import.meta.env.BASE_URL}prudential-logo.webp`}
           alt="Prudential"
           className="h-[38px] w-auto mix-blend-multiply mx-auto mb-[5vh]"
         />
