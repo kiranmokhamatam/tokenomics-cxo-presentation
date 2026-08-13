@@ -21,7 +21,7 @@ export const REPRESENTATIVE_TASKS: MappedTask[] = [
   { name: 'Generate a recommendation', complexity: 'moderate', tier: 'advanced' },
 ]
 
-const TIER_Y: Record<ModelTier, number> = { efficient: 52, advanced: 150, frontier: 248 }
+const TIER_Y: Record<ModelTier, number> = { efficient: 64, advanced: 162, frontier: 260 }
 const TIER_STYLE: Record<ModelTier, { fill: string; stroke: string; text: string }> = {
   efficient: { fill: 'white', stroke: 'var(--color-hairline)', text: 'var(--color-ink)' },
   advanced: { fill: 'var(--color-pru-mist)', stroke: 'rgba(83,125,147,0.4)', text: 'var(--color-pru-ink)' },
@@ -31,7 +31,7 @@ const TIER_STYLE: Record<ModelTier, { fill: string; stroke: string; text: string
 export function RoutingDiagram({ animate = true }: { animate?: boolean }) {
   const taskYs = REPRESENTATIVE_TASKS.map((_, i) => 34 + i * 47)
   return (
-    <svg viewBox="0 0 900 300" className="w-full" role="img" aria-label="Tasks routed to the appropriate model tier">
+    <svg viewBox="0 0 900 320" className="w-full" role="img" aria-label="Tasks routed to the appropriate model tier">
       {/* column labels */}
       {[
         ['TASK', 10],
@@ -93,16 +93,18 @@ export function RoutingDiagram({ animate = true }: { animate?: boolean }) {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
           >
-            <rect x={690} y={y - 31} width={200} height={62} fill={s.fill} stroke={s.stroke} />
-            <text x={708} y={y - 10} fontSize="13" fontWeight="600" fill={s.text}>
+            <rect x={690} y={y - 42} width={200} height={84} fill={s.fill} stroke={s.stroke} />
+            <text x={708} y={y - 20} fontSize="13" fontWeight="600" fill={s.text}>
               {MODELS[tier].name}
             </text>
-            <text x={708} y={y + 5} fontSize="9" fill={subColor} className="font-mono" letterSpacing="0.08em">
+            <text x={708} y={y - 5} fontSize="8.5" fill={subColor} className="font-mono" letterSpacing="0.08em">
               {sub}
             </text>
-            <text x={708} y={y + 21} fontSize="9.5" fill={subColor}>
-              e.g. {MODELS[tier].examples.join(' · ')}
-            </text>
+            {MODELS[tier].examples.map((ex, j) => (
+              <text key={ex} x={708} y={y + 13 + j * 14} fontSize="9.5" fill={subColor}>
+                {j === 0 ? 'e.g. ' : ''}{ex}
+              </text>
+            ))}
           </motion.g>
         )
       })}
