@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import {
   DISCLAIMER,
+  MODELS,
   SCENARIOS,
   STRATEGIES,
   STRATEGY_ORDER,
@@ -188,10 +189,15 @@ function Slide05() {
                     </div>
                   ))
                 ) : (
-                  <div className="flex items-center gap-2 text-[min(1vw,13px)] text-gray-cool">
-                    <ModelChip tier={id === 'frontier' ? 'frontier' : 'efficient'} />
-                    <span>every task</span>
-                  </div>
+                  <>
+                    <div className="flex items-center gap-2 text-[min(1vw,13px)] text-gray-cool">
+                      <ModelChip tier={id === 'frontier' ? 'frontier' : 'efficient'} />
+                      <span>every task</span>
+                    </div>
+                    <p className="text-[min(0.9vw,12px)] text-gray-cool">
+                      e.g. {MODELS[id === 'frontier' ? 'frontier' : 'efficient'].examples.join(' · ')}
+                    </p>
+                  </>
                 )}
               </div>
             </motion.div>

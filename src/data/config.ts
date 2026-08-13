@@ -25,6 +25,8 @@ export interface ModelSpec {
   tokensPerSecond: number
   /** quality score (0–100) the model achieves at each task complexity */
   quality: Record<Complexity, number>
+  /** representative commercial models in this capability class (illustrative, not an endorsement) */
+  examples: string[]
 }
 
 export const MODELS: Record<ModelTier, ModelSpec> = {
@@ -38,6 +40,7 @@ export const MODELS: Record<ModelTier, ModelSpec> = {
     ttft: 0.25,
     tokensPerSecond: 120,
     quality: { simple: 96, moderate: 85, complex: 63 },
+    examples: ['Gemini 3.5 Flash-Lite', 'Claude Haiku 4.5'],
   },
   advanced: {
     tier: 'advanced',
@@ -49,6 +52,7 @@ export const MODELS: Record<ModelTier, ModelSpec> = {
     ttft: 0.5,
     tokensPerSecond: 72,
     quality: { simple: 97, moderate: 93, complex: 83 },
+    examples: ['Gemini 3.6 Flash', 'Claude Sonnet 4.6'],
   },
   frontier: {
     tier: 'frontier',
@@ -60,6 +64,7 @@ export const MODELS: Record<ModelTier, ModelSpec> = {
     ttft: 0.9,
     tokensPerSecond: 38,
     quality: { simple: 98, moderate: 96, complex: 95 },
+    examples: ['Gemini 3.1 Pro', 'Claude Opus 4.8'],
   },
 }
 

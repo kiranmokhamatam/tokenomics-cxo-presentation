@@ -83,6 +83,8 @@ export function RoutingDiagram({ animate = true }: { animate?: boolean }) {
       {(['efficient', 'advanced', 'frontier'] as ModelTier[]).map((tier, i) => {
         const s = TIER_STYLE[tier]
         const y = TIER_Y[tier]
+        const sub = tier === 'efficient' ? 'FAST · LOW COST' : tier === 'advanced' ? 'BALANCED' : 'DEEP REASONING'
+        const subColor = tier === 'frontier' ? 'rgba(255,255,255,0.65)' : 'var(--color-gray-cool)'
         return (
           <motion.g
             key={tier}
@@ -91,12 +93,15 @@ export function RoutingDiagram({ animate = true }: { animate?: boolean }) {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
           >
-            <rect x={690} y={y - 24} width={200} height={48} fill={s.fill} stroke={s.stroke} />
-            <text x={708} y={y - 2} fontSize="13" fontWeight="600" fill={s.text}>
+            <rect x={690} y={y - 31} width={200} height={62} fill={s.fill} stroke={s.stroke} />
+            <text x={708} y={y - 10} fontSize="13" fontWeight="600" fill={s.text}>
               {MODELS[tier].name}
             </text>
-            <text x={708} y={y + 15} fontSize="9.5" fill={tier === 'frontier' ? 'rgba(255,255,255,0.65)' : 'var(--color-gray-cool)'} className="font-mono" letterSpacing="0.08em">
-              {tier === 'efficient' ? 'FAST · LOW COST' : tier === 'advanced' ? 'BALANCED' : 'DEEP REASONING'}
+            <text x={708} y={y + 5} fontSize="9" fill={subColor} className="font-mono" letterSpacing="0.08em">
+              {sub}
+            </text>
+            <text x={708} y={y + 21} fontSize="9.5" fill={subColor}>
+              e.g. {MODELS[tier].examples.join(' · ')}
             </text>
           </motion.g>
         )
@@ -125,14 +130,18 @@ export default function Chapter01() {
         </div>
         <div className="pt-2">
           <RoutingDiagram />
-          <div className="mt-6 flex items-center gap-6 flex-wrap">
+          <div className="mt-6 flex flex-col gap-2.5">
             {(['efficient', 'advanced', 'frontier'] as ModelTier[]).map((t) => (
-              <span key={t} className="inline-flex items-center gap-2 text-[11.5px] text-ink-soft">
+              <span key={t} className="inline-flex items-baseline gap-2 text-[11.5px] text-ink-soft flex-wrap">
                 <TierDots tier={t} />
                 <span className="font-medium">{MODELS[t].shortName}</span>
                 <span className="text-gray-cool">{MODELS[t].descriptor}</span>
+                <span className="text-gray-cool">— e.g. {MODELS[t].examples.join(', ')}</span>
               </span>
             ))}
+            <p className="font-mono text-[9.5px] tracking-[0.06em] text-gray-cool mt-1">
+              Model examples are representative of each capability class, not an endorsement or comparison.
+            </p>
           </div>
         </div>
       </div>
