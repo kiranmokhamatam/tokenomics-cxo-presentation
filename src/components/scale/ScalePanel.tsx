@@ -161,35 +161,6 @@ export default function ScalePanel({
               </div>
             </div>
 
-            <div>
-              <div className="flex items-baseline justify-between mb-3">
-                <p className="kicker">Avg conversation turns</p>
-                <p className="num text-[15px] font-medium">{state.turns}</p>
-              </div>
-              <input
-                type="range"
-                min={VOLUME.turnsMin}
-                max={VOLUME.turnsMax}
-                value={state.turns}
-                onChange={(e) => onChange({ ...state, turns: Number(e.target.value) })}
-                aria-label="Average conversation turns"
-              />
-            </div>
-
-            <div>
-              <div className="flex items-baseline justify-between mb-3">
-                <p className="kicker">Quality target</p>
-                <p className="num text-[15px] font-medium">{state.qualityTarget}</p>
-              </div>
-              <input
-                type="range"
-                min={70}
-                max={98}
-                value={state.qualityTarget}
-                onChange={(e) => onChange({ ...state, qualityTarget: Number(e.target.value) })}
-                aria-label="Quality target"
-              />
-            </div>
           </>
         )}
       </div>
@@ -230,15 +201,7 @@ export default function ScalePanel({
             <p className="kicker !text-[9px]">Model utilization — {STRATEGIES[state.strategy].name}</p>
             <p className="text-[11.5px]">
               <span className="text-gray-cool">Quality </span>
-              <span
-                className={`num font-medium ${sel.quality >= state.qualityTarget ? 'text-ink' : 'text-warn'}`}
-              >
-                {Math.round(sel.quality)}
-              </span>
-              <span className="text-gray-cool"> / target {state.qualityTarget}</span>
-              {sel.quality < state.qualityTarget && (
-                <span className="text-warn"> · below target</span>
-              )}
+              <span className="num font-medium text-ink">{Math.round(sel.quality)}</span>
             </p>
           </div>
           <UtilizationBar mix={sel.mix} />

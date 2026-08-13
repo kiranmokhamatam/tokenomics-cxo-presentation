@@ -271,7 +271,7 @@ function Slide09() {
           At enterprise scale, model selection becomes a business lever.
         </H>
         <div className="mt-[6vh] flex items-center justify-center gap-[4vw]">
-          {['Lower cost', 'Faster responses', 'Consistent quality'].map((t, i) => (
+          {['Consistent quality', 'Faster responses', 'Lower cost'].map((t, i) => (
             <motion.p
               key={t}
               initial={{ opacity: 0 }}

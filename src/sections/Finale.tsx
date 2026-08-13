@@ -2,9 +2,9 @@ import { motion } from 'framer-motion'
 import { Kicker, SectionShell } from '../components/ui'
 
 const OUTCOMES = [
-  { label: 'Cost', dir: '↓', note: 'Lower spend per interaction' },
+  { label: 'Quality', dir: '↑', note: 'The right model matches frontier quality on the task at hand — a point or two of difference at most, often none' },
   { label: 'Speed', dir: '↑', note: 'Faster responses for agents and customers' },
-  { label: 'Quality', dir: '↑', note: 'Frontier reasoning where it matters' },
+  { label: 'Cost', dir: '↓', note: 'Lower spend per interaction' },
 ]
 
 export default function Finale() {
@@ -40,9 +40,11 @@ export default function Finale() {
           ))}
         </div>
 
-        <p className="mt-16 text-[16px] leading-relaxed text-ink-soft max-w-[620px] mx-auto">
-          AI Tokenomics turns model selection into an enterprise control lever — optimizing cost,
-          speed and quality across every agent interaction.
+        <p className="mt-16 text-[16px] leading-relaxed text-ink-soft max-w-[640px] mx-auto">
+          The point is not to spend less on intelligence — it is to stop overpaying for it. When a
+          task doesn’t need frontier reasoning, an efficient model delivers the same quality on that
+          task. AI Tokenomics turns that selection into an enterprise control lever — quality
+          preserved, responses faster, cost lower, on every agent interaction.
         </p>
       </div>
     </SectionShell>
