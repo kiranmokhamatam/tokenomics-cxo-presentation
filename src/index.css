@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-pru: #537d93;
+  --color-pru-deep: #3d6076;
+  --color-pru-ink: #24404f;
+  --color-pru-mist: #eef2f4;
+  --color-pru-wash: #f7f9fa;
+  --color-ink: #101619;
+  --color-ink-soft: #3c4449;
+  --color-gray-cool: #939598;
+  --color-hairline: #e3e6e8;
+  --color-paper: #fdfdfc;
+  --color-ok: #4a7d5f;
+  --color-warn: #a8722f;
+
+  --font-sans: 'Inter', 'Helvetica Neue', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink font-sans antialiased;
+  font-feature-settings: 'ss01', 'cv05';
+}
+
+.kicker {
+  @apply font-mono text-[11px] font-medium tracking-[0.22em] uppercase text-gray-cool;
+}
+
+.num {
+  @apply font-mono tabular-nums;
+  font-variant-numeric: tabular-nums;
+}
+
+input[type='range'] {
+  @apply appearance-none h-px bg-hairline w-full cursor-pointer;
+}
+input[type='range']::-webkit-slider-thumb {
+  @apply appearance-none w-[15px] h-[15px] rounded-full bg-pru-deep border-2 border-paper;
+  box-shadow: 0 0 0 1px var(--color-pru-deep);
+}
+input[type='range']:focus-visible {
+  outline: none;
+}
+input[type='range']:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 1px var(--color-pru-deep),
+    0 0 0 4px rgba(83, 125, 147, 0.25);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 1.5px solid var(--color-pru-deep);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
