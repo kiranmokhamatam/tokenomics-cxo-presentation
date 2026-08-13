@@ -51,7 +51,7 @@ const CYCLE = 9 // seconds for one full task cycle
 const STAGGER = CYCLE / FLOW_TASKS.length
 
 const ORIGIN = { x: 78, y: 250 }
-const LANE_START = 400
+const LANE_START = 322
 const BLOCK_X = 412
 
 function lanePath(tier: ModelTier) {
@@ -59,7 +59,7 @@ function lanePath(tier: ModelTier) {
   return `M ${ORIGIN.x} ${ORIGIN.y} C 230 ${ORIGIN.y} 260 ${y} ${LANE_START} ${y}`
 }
 
-function RoutingShowcase() {
+export function RoutingShowcase() {
   const reduced = useReducedMotion()
 
   return (
@@ -71,14 +71,24 @@ function RoutingShowcase() {
     >
       {/* lane paths */}
       {(Object.keys(LANE_Y) as ModelTier[]).map((tier) => (
-        <path
-          key={tier}
-          d={lanePath(tier)}
-          fill="none"
-          stroke={TIER_STYLE[tier].path}
-          strokeOpacity={0.38}
-          strokeWidth={1.6}
-        />
+        <g key={tier}>
+          <path
+            d={lanePath(tier)}
+            fill="none"
+            stroke={TIER_STYLE[tier].path}
+            strokeOpacity={0.38}
+            strokeWidth={1.6}
+          />
+          <line
+            x1={LANE_START}
+            y1={LANE_Y[tier]}
+            x2={BLOCK_X}
+            y2={LANE_Y[tier]}
+            stroke={TIER_STYLE[tier].path}
+            strokeOpacity={0.38}
+            strokeWidth={1.6}
+          />
+        </g>
       ))}
 
       {/* origin node */}

@@ -18,6 +18,7 @@ import ComparisonPanel from '../components/run/ComparisonPanel'
 import RunExperience, { RunControls, ScenarioSwitch } from '../components/run/RunExperience'
 import ScalePanel, { type ScaleState } from '../components/scale/ScalePanel'
 import { RoutingDiagram } from '../sections/Chapter01'
+import { RoutingShowcase } from '../sections/Hero'
 import { fmtRuns } from '../lib/format'
 import { Disclaimer, Kicker, ModelChip } from '../components/ui'
 
@@ -40,39 +41,32 @@ const H = ({ children, className = '' }: { children: ReactNode; className?: stri
 
 function Slide01() {
   return (
-    <Slide center>
+    <div className="w-full h-full grid grid-cols-[46fr_54fr] items-center gap-[4vw] px-[6vw]">
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }}>
         <img
           src={`${import.meta.env.BASE_URL}prudential-logo.webp`}
           alt="Prudential"
-          className="h-[38px] w-auto mix-blend-multiply mx-auto mb-[5vh]"
+          className="h-[38px] w-auto mix-blend-multiply mb-[5vh]"
         />
         <Kicker>An illustrative experience for Prudential</Kicker>
-        <h1 className="mt-8 text-[min(6.5vw,84px)] font-semibold tracking-[-0.03em] leading-none">
+        <h1 className="mt-7 text-[min(6vw,80px)] font-semibold tracking-[-0.03em] leading-none">
           AI Tokenomics
         </h1>
         <p className="mt-6 text-[min(2vw,26px)] text-ink-soft tracking-[-0.01em]">
           The right intelligence for the right task.
         </p>
       </motion.div>
-      <motion.svg
-        viewBox="0 0 560 90"
-        className="w-[min(40vw,520px)] mt-[7vh]"
-        aria-hidden
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 1 }}
+      <motion.div
+        initial={{ opacity: 0, x: 16 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="flex justify-center"
       >
-        {[24, 45, 66].map((y, i) => (
-          <g key={y}>
-            <path d={`M0 45 C 120 45 140 ${y} 260 ${y} L 560 ${y}`} fill="none" stroke="var(--color-hairline)" strokeWidth="1" />
-            <circle r="2.4" fill={i === 2 ? 'var(--color-pru-deep)' : 'var(--color-pru)'}>
-              <animateMotion dur="4s" begin={`${i * 1.3}s`} repeatCount="indefinite" path={`M0 45 C 120 45 140 ${y} 260 ${y} L 560 ${y}`} />
-            </circle>
-          </g>
-        ))}
-      </motion.svg>
-    </Slide>
+        <div className="w-[min(46vw,760px)]">
+          <RoutingShowcase />
+        </div>
+      </motion.div>
+    </div>
   )
 }
 
@@ -96,9 +90,9 @@ function Slide02() {
 
 function Slide03() {
   const dims = [
-    { label: 'Cost', after: 'Cost ↓' },
-    { label: 'Latency', after: 'Speed ↑' },
     { label: 'Quality', after: 'Quality ↑' },
+    { label: 'Latency', after: 'Speed ↑' },
+    { label: 'Cost', after: 'Cost ↓' },
     { label: 'Token consumption', after: 'Under control' },
   ]
   return (
@@ -120,7 +114,8 @@ function Slide03() {
         ))}
       </div>
       <p className="mt-[5vh] text-[min(1.3vw,17px)] text-ink-soft max-w-[720px] leading-relaxed">
-        Managed deliberately, that footprint becomes a controllable business outcome.
+        Managed deliberately, that footprint becomes a controllable business outcome — quality
+        held, responses faster, cost lower.
       </p>
     </Slide>
   )
